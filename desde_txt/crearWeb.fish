@@ -1,5 +1,7 @@
 #!/usr/bin/fish
 
+set ignorar "alias.txt" "alias_MSU-1.txt" "alias_MSU-MD.txt" "alias_PICO-8.txt"
+
 function titulo
   switch "$consola"
     case "AMSTRAD"
@@ -64,9 +66,13 @@ echo "<DOCTYPE html>
 echo "<nav id=\"menu\">" > nav.html
 
 for archivo in (find -name '*.txt' | sed 's/\.\///g')
-	if test "$archivo" = "alias.txt"; or test "$archivo" = "alias_MSU-1.txt"; or test "$archivo" = "alias_MSU-MD.txt"; or test "$archivo" = "alias_PICO-8.txt"
-	continue
-end
+	#if test "$archivo" = "alias.txt"; or test "$archivo" = "alias_MSU-1.txt"; or test "$archivo" = "alias_MSU-MD.txt"; or test "$archivo" = "alias_PICO-8.txt"
+	#continue
+	#end
+
+	if contains $archivo $ignorar
+		continue
+	end
         set consola $(echo $archivo | sed 's/\.txt//g; s/_/ /g; s/.*/\U&/g')
 	set numero (cat $archivo | wc -l)
 	titulo
