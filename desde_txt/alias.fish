@@ -7,6 +7,7 @@ mv sega-msumd.txt sega-msumd2.txt
 mv cps1.txt cps12.txt
 mv cps2.txt cps22.txt
 mv cps3.txt cps32.txt
+mv neogeo.txt neogeo2.txt
 
 echo "Alias de arcade."
 
@@ -54,3 +55,12 @@ for i in (cat sega-msumd2.txt)
 	grep ^$(echo $i)= alias_MSU-MD.txt | sed 's/.*=//g' >> sega-msumd.txt
 end
 
+rm sega-msumd2.txt
+
+echo "Alias de Neo Geo"
+
+for i in (cat neogeo2.txt)
+	grep ^$(echo $i)= alias.txt | sed 's/.*=//g' >> neogeo.txt
+end
+
+rm neogeo2.txt
