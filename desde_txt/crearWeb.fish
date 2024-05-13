@@ -69,7 +69,7 @@ echo "<DOCTYPE html>
 <body>" > ../listado.html
 echo "<nav id=\"menu\">" > nav.html
 
-for archivo in (find -name '*.txt' | sed 's/\.\///g')
+for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort - -f -b)
 	#if test "$archivo" = "alias.txt"; or test "$archivo" = "alias_MSU-1.txt"; or test "$archivo" = "alias_MSU-MD.txt"; or test "$archivo" = "alias_PICO-8.txt"
 	#continue
 	#end
