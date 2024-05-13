@@ -112,10 +112,6 @@ if test -e 'NINTENDO DS.7z'
   7z l 'NINTENDO DS.7z' Roms/NDS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/nds.txt
 end
 
-if test -e 'OPENBOR.7z'
-  7z l 'OPENBOR.7z.001' Roms/OPENBOR/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/openbor.txt
-end
-
 if test -e 'PC ENGINE.7z'
   7z l 'PC ENGINE.7z' Roms/PCE/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/pce.txt
 end
@@ -222,3 +218,9 @@ end
 if test -e 'PLAYSTATION EXTRA PACK.7z.001'
   7z l 'PLAYSTATION EXTRA PACK.7z.001' Roms/PS/Imgs | sed '1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d; s/.*Imgs.*\///g; s/\.png//g' > ~/consolas/playstation_extras.txt
 end
+
+if test -e 'OPENBOR.7z'
+  7z l 'OPENBOR.7z.001' Roms/OPENBOR/Imgs | sed '1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d; s/.*Imgs.*\///g; s/\.png//g' > ~/consolas/openbor.txt
+end
+
+
