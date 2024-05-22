@@ -1,6 +1,7 @@
 #!/usr/bin/fish
 
 set ignorar "alias.txt" "alias_MSU-1.txt" "alias_MSU-MD.txt" "alias_PICO-8.txt"
+set exportar "../index.html"
 
 function titulo
   switch "$consola"
@@ -22,9 +23,9 @@ function titulo
 	set consola "Game Gear"
     case "MD"
 	set consola "Mega Drive"
-    case "MS"
+    case "SEGA-MS"
 	set consola "Sega Master System"
-    case "MSU1"
+    case "SUPER-NINTENDO-MSU1"
 	set consola "Super Nintendo MSU1"
     case "NDS"
 	set consola "Nintendo DS"
@@ -54,8 +55,12 @@ function titulo
 	set consola "Super Game Boy"
     case "SUPER-NINTENDO"
 	set consola "Super Nintendo"
-    case "SUPERVISION"
+    case "WATARA-SUPERVISION"
 	set consola "Watara Supervision"
+    case "WONDERSWAN"
+	set consola "WonderSwan"
+    case "VIRTUAL-BOY"
+	set consola "Virtual Boy"
     case "ZX-SPECTRUM"
 	set consola "ZX Spectrum"
   end
@@ -64,9 +69,10 @@ end
 echo "<DOCTYPE html>
 <html>
 <head>
+  <title>Listado de juegos en BOM</title>
   <link rel=\"stylesheet\" href=\"style.css\">
 </head>
-<body>" > ../listado.html
+<body>" > $exportar
 echo "<nav id=\"menu\">" > nav.html
 
 for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort - -f -b)
@@ -82,18 +88,18 @@ for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort - -f -b)
 	titulo
 	sed -i "s|^|<div class=\"juego\"><span>|g" $archivo
 	sed -i "s|\$|</span><span>$consola</span></div>|g" $archivo
-	echo "<section>" >> ../listado.html
-	echo "<h2 id=\"$consola\">$consola ($numero)<a href=\"#menu\">🔝</a></h2>" >> ../listado.html
-	cat $archivo >> ../listado.html
-	echo "</section>" >> ../listado.html
+	echo "<section>" >> $exportar
+	echo "<h2 id=\"$consola\">$consola ($numero)<a href=\"#menu\">🔝</a></h2>" >> $exportar
+	cat $archivo >> $exportar
+	echo "</section>" >> $exportar
 	echo "<a href=\"#$consola\">$consola ($numero)</a>" >> nav.html
 end
 
 echo "</nav>
 <div class=\"arriba\"><a href=\"#menu\">🔝</a></div>" >> nav.html
 set menu (cat nav.html)
-sed -i "6a$menu" ../listado.html
+sed -i "7a$menu" $exportar
 echo "</body>
-</html>" >> ../listado.html
+</html>" >> $exportar
 
 rm nav.html

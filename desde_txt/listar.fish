@@ -77,7 +77,7 @@ if test -e 'GAME GEAR.7z'
 end
 
 if test -e 'MASTER SYSTEM.7z'
-  7z l 'MASTER SYSTEM.7z' Roms/MS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/ms.txt
+  7z l 'MASTER SYSTEM.7z' Roms/MS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/sega-ms.txt
 end
 
 if test -e 'MEGA DRIVE.7z'
@@ -188,7 +188,7 @@ if test -e 'Sega MSU-MD.7z.001'
 end
 
 if test -e 'MSU1.7z.001'
-  7z l 'MSU1.7z.001' Roms/MSU1/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' > ~/consolas/msu1.txt
+  7z l 'MSU1.7z.001' Roms/MSU1/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' > ~/consolas/super-nintendo-msu1.txt
 end
 
 if test -e 'PC ENGINE CD.7z.001'

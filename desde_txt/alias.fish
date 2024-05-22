@@ -2,7 +2,7 @@
 
 
 mv arcade.txt arcade2.txt
-mv msu1.txt msu12.txt
+mv super-nintendo-msu1.txt msu1.txt
 mv sega-msumd.txt sega-msumd2.txt
 mv cps1.txt cps12.txt
 mv cps2.txt cps22.txt
@@ -43,11 +43,11 @@ rm cps32.txt
 
 echo "Alias de MSU"
 
-for i in (cat msu12.txt)
-	grep ^$(echo $i)= alias_MSU-1.txt | sed 's/.*=//g' >> msu1.txt
+for i in (cat msu1.txt)
+	grep ^$(echo $i)= alias_MSU-1.txt | sed 's/.*=//g' >> super-nintendo-msu1.txt
 end
 
-rm msu12.txt
+rm msu1.txt
 
 echo "Alias de MSU-MD"
 
