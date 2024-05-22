@@ -13,7 +13,7 @@ o directamente desde los comprimidos (que también utiliza las imágenes *scrape
     para que no se sobreescriba.
 4. Lanzar los script preferidos.
 
->> Nota: Todavía no funciona con Ports, Doom, Quake y Wolfestain 3D
+> Nota: Todavía no funciona con Ports, Doom, Quake y Wolfestain 3D
 
 #### Desde txt
 1. Colocar el script **listar.fish** en la misma carpeta que están los comprimidos
@@ -25,5 +25,5 @@ de las consolas.
 alias para ser listados (hay que tener los archivos de los alias)
 9. Ejecutar **crearWeb.fish** y crea un archivo html con el listado de los juegos.
 
->> Nota: El script **reset.fish** reinicia todo copiando los archivos txt de los
+> Nota: El script **reset.fish** reinicia todo copiando los archivos txt de los
 juegos desde una carpeta backup anteriormente creada llamada consolas.
