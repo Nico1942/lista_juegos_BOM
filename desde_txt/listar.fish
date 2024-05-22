@@ -146,7 +146,7 @@ if test -e 'VIRTUAL BOY.7z'
 end
 
 if test -e 'WATARA SUPERVISION.7z'
-  7z l 'WATARA SUPERVISION.7z' Roms/SUPERVISION/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/supervision.txt
+  7z l 'WATARA SUPERVISION.7z' Roms/SUPERVISION/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/watara-supervision.txt
 end
 
 if test -e 'WONDERSWAN.7z'
