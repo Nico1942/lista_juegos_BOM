@@ -1,7 +1,27 @@
+* { margin: 0; padding: 0; box-sizing: border-box;
+
+
+  --textcolor:#121212;
+  --bgcolor:#fff;
+}
+
+@media (prefers-color-scheme: dark) {
+* {
+    --textcolor:#dadada;
+    --bgcolor:#141414;
+  }
+}
+
 html { 
     font-family: Sans; 
     font-size: 18px;
+    color: var(--textcolor);
+    background-color: var(--bgcolor);
 }
+
+h1 {
+  margin: 5px 2vw;
+  }
 
 a {
     text-decoration: none;
@@ -64,5 +84,11 @@ h2 { border: none; }
 	html { font-size: 24px; }
 	nav {
 	  grid-template-columns: auto;
+	}
+}
+
+@media screen and (min-width:1200px) {
+	nav {
+	  grid-template-columns: repeat(5, 1fr);
 	}
 }
