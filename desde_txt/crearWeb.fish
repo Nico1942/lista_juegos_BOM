@@ -22,7 +22,7 @@ function titulo
     case "GG"
 	set consola "Game Gear"
     case "MD"
-	set consola "Mega Drive"
+	set consola "Mega Drive / Sega Genesis"
     case "SEGA-MS"
 	set consola "Sega Master System"
     case "SUPER-NINTENDO-MSU1"
@@ -71,6 +71,7 @@ echo "<!DOCTYPE html>
 <head>
   <title>🔥 Listado de juegos BOM 🎮️</title>
   <link rel=\"stylesheet\" href=\"style.css\">
+  <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮️</text></svg>\">
 </head>
 <body>
 <h1 id=\"menu\">🔥 Listado de Juegos BOM 🎮️ </h1>" > $exportar
@@ -96,7 +97,7 @@ end
 echo "</nav>
 <div class=\"arriba\"><a href=\"#menu\">🔝</a></div>" >> nav.html
 set menu (cat nav.html)
-sed -i "8a$menu" $exportar
+sed -i "9a$menu" $exportar
 echo "</body>
 </html>" >> $exportar
 
