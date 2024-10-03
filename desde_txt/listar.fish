@@ -220,7 +220,7 @@ if test -e 'PLAYSTATION EXTRA PACK.7z.001'
 end
 
 if test -e 'OPENBOR.7z'
-  7z l 'OPENBOR.7z.001' Roms/OPENBOR/Imgs | sed '1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d; s/.*Imgs.*\///g; s/\.png//g' > ~/consolas/openbor.txt
+  7z l 'OPENBOR.7z' Roms/OPENBOR/Imgs | sed '1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d; s/.*Imgs.*\///g; s/\.png//g' > ~/consolas/openbor.txt
 end
 
 

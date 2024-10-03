@@ -85,17 +85,16 @@ for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort - -f -b)
         set consola $(echo $archivo | sed 's/\.txt//g; s/_/ /g; s/.*/\U&/g')
 	set numero (cat $archivo | wc -l)
 	titulo
-	sed -i "s|^|<div class=\"juego\"><span>|g" $archivo
-	sed -i "s|\$|</span><span>$consola</span></div>|g" $archivo
 	echo "<section>" >> $exportar
-	echo "<h2 id=\"$consola\">$consola ($numero)<a href=\"#menu\">🔝</a></h2>" >> $exportar
-	cat $archivo >> $exportar
+	echo "<h2 id=\"$consola\">$consola ($numero)<a href=\"#menu\">Arriba ⤴</a></h2>" >> $exportar
+	for i in (cat $archivo)
+		echo "<div class=\"juego\"><span>$i</span><span>$consola</span></div>" >> $exportar
+	end
 	echo "</section>" >> $exportar
 	echo "<a href=\"#$consola\">$consola ($numero)</a>" >> nav.html
 end
 
-echo "</nav>
-<div class=\"arriba\"><a href=\"#menu\">🔝</a></div>" >> nav.html
+echo "</nav>" >> nav.html
 set menu (cat nav.html)
 sed -i "9a$menu" $exportar
 echo "</body>

@@ -65,7 +65,7 @@ section {
   margin: 2px;
 }
 
-h2 { border: none; }
+h2 { border: 2px solid black; position: sticky; top: 2px; background-color: white; }
 
 .arriba {
   position: fixed;
