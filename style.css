@@ -3,18 +3,20 @@
 
   --textcolor:#121212;
   --bgcolor:#fff;
+  --titulo-bg: #ccc;
 }
 
 @media (prefers-color-scheme: dark) {
 * {
     --textcolor:#dadada;
     --bgcolor:#141414;
+    --titulo-bg: #ccc;
   }
 }
 
 html { 
     font-family: Sans; 
-    font-size: 18px;
+    font-size: 1.5em;
     color: var(--textcolor);
     background-color: var(--bgcolor);
 }
@@ -65,25 +67,14 @@ section {
   margin: 2px;
 }
 
-h2 { border: 2px solid black; position: sticky; top: 2px; background-color: white; }
+h2 { border: 2px solid black; position: sticky; top: 2px; background-color: var(--titulo-bg); }
 
-.arriba {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  background-color: white;
-  font-size: 2rem;
-  padding: 5px;
-  border-radius: 5px;
-  border: solid 2px black;
-  text-decoration: none;
-}
-.arriba:hover { border: solid 3px red; }
-
-@media screen and (max-width:640px) {
-	html { font-size: 24px; }
+@media screen and (max-width: 600px) {
 	nav {
 	  grid-template-columns: auto;
+	}
+	.juego > span:nth-child(2) {
+		display: none;
 	}
 }
 
