@@ -26,7 +26,7 @@ for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort - -f -b)
 	if contains $archivo $ignorar
 		continue
 	end
-	set numero (awk 'END { print NR }' $archivo)
+	set numero (wc -l < $archivo)
 	set consola (titulo $archivo )
 	echo "<section>" >> $exportar
 	echo "<h2 id=\"$consola\">$consola ($numero)<a href=\"#menu\">Arriba ⤴</a></h2>" >> $exportar
