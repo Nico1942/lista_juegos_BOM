@@ -41,8 +41,8 @@ end
 # GAME GEAR
   listar_normal 'GAME GEAR.7z' ~/consolas/gg.txt
 
-# MASTER SYSTEM
-  listar_normal 'MASTER SYSTEM.7z' ~/consolas/ms.txt
+# SEGA MASTER SYSTEM
+  listar_normal 'MASTER SYSTEM.7z' ~/consolas/sega-ms.txt
 
 # MEGA DRIVE
   listar_normal 'MEGA DRIVE.7z' ~/consolas/md.txt
@@ -93,7 +93,7 @@ end
   listar_normal 'VIRTUAL BOY.7z' ~/consolas/virtual-boy.txt
 
 # WATARA SUPERVISION
-  listar_normal 'WATARA SUPERVISION.7z' ~/consolas/supervision.txt
+  listar_normal 'WATARA SUPERVISION.7z' ~/consolas/watara-supervision.txt
 
 # WONDERSWAN
   listar_normal 'WONDERSWAN.7z' ~/consolas/wonderswan.txt
@@ -104,31 +104,28 @@ end
 # ODYSEEY 2
   listar_normal 'ODYSSEY 2.7z' ~/consolas/odyssey2.txt
 
-# PORTS
-  listar_normal 'PORTS.7z' ~/consolas/ports.txt
-
-# SEGA CD.7z.
+# SEGA CD
   listar_normal 'SEGA CD/SEGA CD.7z.001' ~/consolas/sega-cd.txt
 
-# Sega MSU-MD.7z.
+# Sega MSU-MD
   listar_normal 'Sega MSU-MD/Sega MSU-MD.7z.001' ~/consolas/sega-msumd.txt
 
-# MSU1.7z.
-  listar_normal 'MSU1/MSU1.7z.001' ~/consolas/msu1.txt
+# SUPER NINTENDO MSU1
+  listar_normal 'MSU1/MSU1.7z.001' ~/consolas/super-nintendo-msu1.txt
 
-# PC ENGINE CD.7z.
+# PC ENGINE CD
   listar_normal 'PC ENGINE CD/PC ENGINE CD.7z.001' ~/consolas/pce-cd.txt
 
-# SCUMMVM.7z.
+# SCUMMVM
   listar_normal 'SCUMMVM/SCUMMVM.7z.001' ~/consolas/scummvm.txt
 
 # X68000
   listar_normal 'X68000.7z' ~/consolas/x68000.txt
 
-# PLAYSTATION.7z
+# PLAYSTATIO
   listar_normal 'PS/PLAYSTATION.7z.001' ~/consolas/playstation.txt
 
-# PLAYSTATION EXTRA PACK.7z.
+# PLAYSTATION EXTRA PACK
   listar_normal 'PS-EXTRA/PLAYSTATION EXTRA PACK.7z.001' ~/consolas/playstation_extras.txt
 
 ### Subdirectorios
@@ -194,3 +191,8 @@ end
 if test -e 'PICO-8.7z'
   7z l 'PICO-8.7z' | awk -F '/' '/PICO/ {gsub(/.p8.png/,""); if ( $3 != "") print $3}' > ~/consolas/pico.txt
 end
+
+# PORTS
+  if test -e 'PORTS.7z'
+    7z l 'PORTS.7z' | awk -F '/' '/Imgs/ { gsub(/.png/,""); gsub(/_/," "); if ( $4 != "" ) print $4 }' | sed 's/^\w/\U&/g; s/ \w/\U&/g' > ~/consolas/ports.txt
+  end
