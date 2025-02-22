@@ -1,5 +1,8 @@
 #!/usr/bin/fish
 
+# Script que toma los comprimidos de BOM para listar los juegos que hay en ellos
+# basándose en las imágenes skrapeadas.
+
 mkdir -p ~/consolas
 
 function listar_normal --argument consola output
@@ -173,7 +176,13 @@ end
 
 # DOOM
 if test -e 'DOOM.7z'
-  7z l 'DOOM.7z' | awk -F '/' '/Imgs/ {gsub(/.png/, ""); if ( $5 != "") print $5}' > ~/consolas/doom.txt
+  7z l 'DOOM.7z' | awk -F '/' '/Imgs/ {gsub(/.png/, ""); /
+  if ( $5 != "") {
+    if ( $3 == "DOOM" ) print "DOOM - " $5
+    else
+      print "DOOM2 - " $5
+  }
+  }' > ~/consolas/doom.txt
 end
 
 # QUAKE
