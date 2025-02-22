@@ -1,226 +1,187 @@
 #!/usr/bin/fish
 
-if test -e 'AMIGA.7z'
-  7z l 'AMIGA.7z' Roms/AMIGA/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/amiga.txt
+mkdir -p ~/consolas
+
+function listar_normal --argument consola output
+
+  if test -e $consola
+    7z l "$consola" | awk -F '/' '/Imgs/ {gsub(/.png/,""); if ( $4 != "" ) print $4}' > "$output"
+  end
+
 end
 
-if test -e 'AMSTRAD CPC.7z'
-  7z l 'AMSTRAD CPC.7z' Roms/CPC/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/amstrad.txt
+function listar_por_img --argument consola output
+  ls "$consola/Imgs" | sed -e 's/.png//g' > "$output"
 end
 
-if test -e 'ARCADE.7z'
-  7z l 'ARCADE.7z' Roms/ARCADE/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/arcade.txt
-end
+# AMIGA
+ listar_normal 'AMIGA.7z' ~/consolas/amiga.txt
 
-if test -e 'ARDUBOY.7z'
-  7z l 'ARDUBOY.7z' Roms/ARDUBOY/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/arduboy.txt
-end
+# CPS2
+  listar_normal 'CPS2.7z' ~/consolas/cps2.txt
 
-if test -e 'ATARI 2600.7z'
-  7z l 'ATARI 2600.7z' Roms/ATARI/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/atari_2600.txt
-end
+# CPS3
+  listar_normal 'CPS3.7z' ~/consolas/cps3.txt
 
-if test -e 'ATARI 5200.7z'
-  7z l 'ATARI 5200.7z' Roms/FIFTYTWOHUNDRED/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/atari_5200.txt
-end
+# GAME BOY
+  listar_normal 'GAME BOY.7z' ~/consolas/gb.txt
 
-if test -e 'ATARI 7800.7z'
-  7z l 'ATARI 7800.7z' Roms/SEVENTYEIGHTHUNDRED/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/atari_7800.txt
-end
+# GAME BOY ADVANCE
+  listar_normal 'GAME BOY ADVANCE.7z' ~/consolas/gba.txt
 
-if test -e 'ATARI LYNX.7z'
-  7z l 'ATARI LYNX.7z' Roms/LYNX/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/atari_lynx.txt
-end
+# GAME BOY COLOR
+  listar_normal 'GAME BOY COLOR.7z' ~/consolas/gbc.txt
 
-if test -e 'COMMODORE 64.7z'
-  7z l 'COMMODORE 64.7z' Roms/C64/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/commodore.txt
-end
+# GAME GEAR
+  listar_normal 'GAME GEAR.7z' ~/consolas/gg.txt
 
-if test -e 'CPS1.7z'
-  7z l 'CPS1.7z' Roms/CPS1/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/cps1.txt
-end
+# GAME GEAR
+  listar_normal 'GAME GEAR.7z' ~/consolas/gg.txt
 
-if test -e 'CPS2.7z'
-  7z l 'CPS2.7z' Roms/CPS2/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/cps2.txt
-end
+# MASTER SYSTEM
+  listar_normal 'MASTER SYSTEM.7z' ~/consolas/ms.txt
 
-if test -e 'CPS3.7z'
-  7z l 'CPS3.7z' Roms/CPS3/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/cps3.txt
-end
+# MEGA DRIVE
+  listar_normal 'MEGA DRIVE.7z' ~/consolas/md.txt
 
-if test -e 'FAMICON DISK SYSTEM.7z'
-  7z l 'FAMICON DISK SYSTEM.7z' Roms/FDS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/fds.txt
-end
+# MS-DOS
+  listar_normal 'MS-DOS.7z' ~/consolas/ms-dos.txt
 
-if test -e 'GAME & WATCH.7z'
-  7z l 'GAME & WATCH.7z' Roms/GW/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/gw.txt
-end
+# NEO GEO
+  listar_normal 'NEO GEO.7z' ~/consolas/neogeo.txt
 
-if test -e 'GAME BOY.7z'
-  7z l 'GAME BOY.7z' Roms/GB/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/gb.txt
-end
+# Neo Geo CD.7z.
+  listar_normal 'Neo Geo CD/NEO GEO CD.7z.001' ~/consolas/neogeo-cd.txt
 
-if test -e 'GAME BOY ADVANCE.7z'
-  7z l 'GAME BOY ADVANCE.7z' Roms/GBA/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/gba.txt
-end
+# NEO GEO POCKET
+  listar_normal 'NEO GEO POCKET.7z' ~/consolas/neogeo-pocket.txt
 
-if test -e 'GAME BOY COLOR.7z'
-  7z l 'GAME BOY COLOR.7z' Roms/GBC/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/gbc.txt
-end
+# NES
+  listar_normal 'NES.7z' ~/consolas/nes.txt
 
-if test -e 'GAME GEAR.7z'
-  7z l 'GAME GEAR.7z' Roms/GG/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/gg.txt
-end
+# NINTENDO DS
+  listar_normal 'NINTENDO DS.7z' ~/consolas/nds.txt
 
-if test -e 'GAME GEAR.7z'
-  7z l 'GAME GEAR.7z' Roms/GG/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/gg.txt
-end
+# OPENBOR
+  listar_normal 'OPENBOR.7z' ~/consolas/openbor.txt
 
-if test -e 'MASTER SYSTEM.7z'
-  7z l 'MASTER SYSTEM.7z' Roms/MS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/sega-ms.txt
-end
+# PC ENGINE
+  listar_normal 'PC ENGINE.7z' ~/consolas/pce.txt
 
-if test -e 'MEGA DRIVE.7z'
-  7z l 'MEGA DRIVE.7z' Roms/MD/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/md.txt
-end
+# POKEMINI
+  listar_normal 'POKEMINI.7z' ~/consolas/pokemini.txt
 
-if test -e 'MS-DOS.7z'
-  7z l 'MS-DOS.7z' Roms/DOS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/ms-dos.txt
-end
+# SEGA 32X
+  listar_normal 'SEGA 32X.7z' ~/consolas/sega-32.txt
 
-if test -e 'MSX.7z'
-  7z l 'MSX.7z' Roms/MSX/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/msx.txt
-end
+# SG-1000
+  listar_normal 'SG-1000.7z' ~/consolas/sg-1000.txt
 
-if test -e 'NEO GEO.7z'
-  7z l 'NEO GEO.7z' Roms/NEOGEO/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/neogeo.txt
-end
+# SUPER GAME BOY
+  listar_normal 'SUPER GAME BOY.7z' ~/consolas/super-gb.txt
 
-if test -e 'Neo Geo CD.7z.001'
-  7z l 'Neo Geo CD.7z.001' Roms/NEOCD/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' > ~/consolas/neogeo-cd.txt
-end
+# SUPER NINTENDO
+  listar_normal 'SUPER NINTENDO.7z' ~/consolas/super-nintendo.txt
 
-if test -e 'NEO GEO POCKET.7z'
-  7z l 'NEO GEO POCKET.7z' Roms/NGP/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/neogeo-pocket.txt
-end
+# TIC-80
+  listar_normal 'TIC-80.7z' ~/consolas/tic-80.txt
 
-if test -e 'NES.7z'
-  7z l 'NES.7z' Roms/FC/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/nes.txt
-end
+# VIRTUAL BOY
+  listar_normal 'VIRTUAL BOY.7z' ~/consolas/virtual-boy.txt
 
-if test -e 'NINTENDO DS.7z'
-  7z l 'NINTENDO DS.7z' Roms/NDS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/nds.txt
-end
+# WATARA SUPERVISION
+  listar_normal 'WATARA SUPERVISION.7z' ~/consolas/supervision.txt
 
-if test -e 'PC ENGINE.7z'
-  7z l 'PC ENGINE.7z' Roms/PCE/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/pce.txt
-end
+# WONDERSWAN
+  listar_normal 'WONDERSWAN.7z' ~/consolas/wonderswan.txt
 
+# WOLFENSTEIN 3D
+  listar_normal 'WOLFENSTEIN 3D.7z' ~/consolas/wolfenstein.txt
 
-if test -e 'POKEMINI.7z'
-  7z l 'POKEMINI.7z' Roms/POKE/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/pokemini.txt
-end
+# ODYSEEY 2
+  listar_normal 'ODYSSEY 2.7z' ~/consolas/odyssey2.txt
 
-if test -e 'SEGA 32X.7z'
-  7z l 'SEGA 32X.7z' Roms/THIRTYTWOX/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/sega-32.txt
-end
+# PORTS
+  listar_normal 'PORTS.7z' ~/consolas/ports.txt
 
-if test -e 'SG-1000.7z'
-  7z l 'SG-1000.7z' Roms/SEGASGONE/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/sg-1000.txt
-end
+# SEGA CD.7z.
+  listar_normal 'SEGA CD/SEGA CD.7z.001' ~/consolas/sega-cd.txt
 
-if test -e 'SUPER GAME BOY.7z'
-  7z l 'SUPER GAME BOY.7z' Roms/SGB/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/super-gb.txt
-end
+# Sega MSU-MD.7z.
+  listar_normal 'Sega MSU-MD/Sega MSU-MD.7z.001' ~/consolas/sega-msumd.txt
 
-if test -e 'SUPER NINTENDO.7z'
-  7z l 'SUPER NINTENDO.7z' Roms/SFC/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/super-nintendo.txt
-end
+# MSU1.7z.
+  listar_normal 'MSU1/MSU1.7z.001' ~/consolas/msu1.txt
 
-if test -e 'TIC-80.7z'
-  7z l 'TIC-80.7z' Roms/TIC/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/tic-80.txt
-end
+# PC ENGINE CD.7z.
+  listar_normal 'PC ENGINE CD/PC ENGINE CD.7z.001' ~/consolas/pce-cd.txt
 
-if test -e 'VIRTUAL BOY.7z'
-  7z l 'VIRTUAL BOY.7z' Roms/VB/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/virtual-boy.txt
-end
+# SCUMMVM.7z.
+  listar_normal 'SCUMMVM/SCUMMVM.7z.001' ~/consolas/scummvm.txt
 
-if test -e 'WATARA SUPERVISION.7z'
-  7z l 'WATARA SUPERVISION.7z' Roms/SUPERVISION/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/watara-supervision.txt
-end
+# X68000
+  listar_normal 'X68000.7z' ~/consolas/x68000.txt
 
-if test -e 'WONDERSWAN.7z'
-  7z l 'WONDERSWAN.7z' Roms/WS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/wonderswan.txt
-end
+# PLAYSTATION.7z
+  listar_normal 'PS/PLAYSTATION.7z.001' ~/consolas/playstation.txt
 
-if test -e 'ZX SPECTRUM.7z'
-  7z l 'ZX SPECTRUM.7z' Roms/ZXS/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/zx-spectrum.txt
-end
+# PLAYSTATION EXTRA PACK.7z.
+  listar_normal 'PS-EXTRA/PLAYSTATION EXTRA PACK.7z.001' ~/consolas/playstation_extras.txt
 
+### Subdirectorios
 
-if test -e 'GBA_MVM.7z'
-  7z l 'GBA_MVM.7z' Roms/GBA/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/gba_mvm.txt
-end
+# AMSTRAD CPC
+  listar_por_img 'AMSTRAD CPC' ~/consolas/amstrad.txt
 
-if test -e 'WOLFENSTEIN 3D.7z'
-  7z l 'WOLFENSTEIN 3D.7z' Roms/WOLF3D/Imgs | sed 's/.*Imgs\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/wolfenstein.txt
-end
+# ARCADE
+  listar_por_img 'ARCADE' ~/consolas/arcade.txt
 
+# ARDUBOY
+  listar_por_img 'ARDUBOY' ~/consolas/arduboy.txt
+
+# ATARI 2600
+  listar_por_img 'ATARI 2600' ~/consolas/atari_2600.txt
+
+# ATARI 5200
+  listar_por_img 'ATARI 5200' ~/consolas/atari_5200.txt
+
+# ATARI 7800
+  listar_por_img 'ATARI 7800' ~/consolas/atari_7800.txt
+
+# ATARI LYNX
+  listar_por_img 'ATARI LYNX' ~/consolas/atari_lynx.txt
+
+# COMMODORE 64
+  listar_por_img 'COMMODORE 64' ~/consolas/commodore.txt
+
+# CPS1
+  listar_por_img 'CPS1' ~/consolas/cps1.txt
+
+# FAMICON DISK SYSTEM
+  listar_por_img 'Famicom Disk System' ~/consolas/fds.txt
+
+# GAME & WATCH
+  listar_por_img 'Game & Watch' ~/consolas/gw.txt
+
+# MSX
+  listar_por_img 'MSX' ~/consolas/msx.txt
+
+# ZX SPECTRUM
+  listar_por_img 'ZXS' ~/consolas/zx-spectrum.txt
+
+### Especiales
+
+# DOOM
 if test -e 'DOOM.7z'
-  7z l 'DOOM.7z' Roms/DOOM/DOOM/Imgs Roms/DOOM/DOOM2/Imgs | sed 's/.*Roms\/DOOM\///g; s/Imgs\///g; s/\// - /g; s/\.png//g; 1,22d; /----/d; $d' > ~/consolas/doom.txt
+  7z l 'DOOM.7z' | awk -F '/' '/Imgs/ {gsub(/.png/, ""); if ( $5 != "") print $5}' > ~/consolas/doom.txt
 end
 
-
-if test -e 'ODYSEEY 2.7z'
-  7z l 'ODYSEEY 2.7z' Roms/ODYSSEY2/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d' > ~/consolas/odyssey2.txt
-end
-
-if test -e 'PORTS.7z'
-  7z l 'PORTS.7z' .simplemenu/games/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; $d; s/_/ /g; s/^\w/\U&/g; s/ \w/\U&/g' > ~/consolas/ports.txt
-end
-
-if test -e 'SEGA CD.7z.001'
-  7z l 'SEGA CD.7z.001' Roms/SEGACD/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' > ~/consolas/sega-cd.txt
-end
-
-if test -e 'Sega MSU-MD.7z.001'
-  7z l 'Sega MSU-MD.7z.001' Roms/MSUMD/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' > ~/consolas/sega-msumd.txt
-end
-
-if test -e 'MSU1.7z.001'
-  7z l 'MSU1.7z.001' Roms/MSU1/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' > ~/consolas/super-nintendo-msu1.txt
-end
-
-if test -e 'PC ENGINE CD.7z.001'
-  7z l 'PC ENGINE CD.7z.001' Roms/PCECD/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' >~/consolas/pce-cd.txt
-end
-
-if test -e 'SCUMMVM.7z.001'
-  7z l 'SCUMMVM.7z.001' Roms/SCUMMVM/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' > ~/consolas/scummvm.txt
-end
-
-if test -e 'X68000.7z'
-  7z l 'X68000.7z' Roms/X68000/Imgs | sed 's/.*Imgs.*\///g; s/\.png//g; 1,21d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d' >~/consolas/x68000.txt
-end
-
+# QUAKE
 if test -e 'QUAKE.7z'
-  7z l 'QUAKE.7z' | grep 'Imgs/' | sed 's/.*\///g; s/\.png//g' > ~/consolas/quake.txt
+  7z l 'QUAKE.7z' | awk -F '/' '/Imgs/ {gsub(/.png/, ""); if ( $5 != "") print $5}' > ~/consolas/quake.txt
 end
 
+# PICO 8
 if test -e 'PICO-8.7z'
-  7z l 'PICO-8.7z' Roms/PICO | sed 's/.*\///g; s/.p8.png//g; 1,21d; /----/d; $d' > ~/consolas/pico.txt
+  7z l 'PICO-8.7z' | awk -F '/' '/PICO/ {gsub(/.p8.png/,""); if ( $3 != "") print $3}' > ~/consolas/pico.txt
 end
-
-if test -e 'PLAYSTATION.7z.001'
-  7z l 'PLAYSTATION.7z.001' Roms/PS/Imgs | sed '1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d; s/.*Imgs.*\///g; s/\.png//g' > ~/consolas/playstation.txt
-end
-
-if test -e 'PLAYSTATION EXTRA PACK.7z.001'
-  7z l 'PLAYSTATION EXTRA PACK.7z.001' Roms/PS/Imgs | sed '1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d; s/.*Imgs.*\///g; s/\.png//g' > ~/consolas/playstation_extras.txt
-end
-
-if test -e 'OPENBOR.7z'
-  7z l 'OPENBOR.7z' Roms/OPENBOR/Imgs | sed '1,30d; /----/d; /files, /d; /Archives/d; /Volumes/d; /size:/d; /^$/d; s/.*Imgs.*\///g; s/\.png//g' > ~/consolas/openbor.txt
-end
-
-
