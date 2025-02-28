@@ -1,9 +1,9 @@
 #!/usr/bin/fish
 
-# Archivos a ignorar en el procesamiento
-set ignorar "alias.txt" "alias_MSU-1.txt" "alias_MSU-MD.txt" "alias_PICO-8.txt" "alias_consolas.txt"
 # Archivo de salida en texto plano
 set exportar "../Listado-BOM.txt"
+set consolasDir "../consolas"
+set aliasDir "../alias"
 
 # Función para obtener el título de la consola a partir de su alias
 # Argumento:
@@ -11,22 +11,17 @@ set exportar "../Listado-BOM.txt"
 # Retorna:
 #   - Nombre completo de la consola
 function titulo
-  set -l alias_consola "alias_consolas.txt"
-  set -l consola $argv[1]
+  set -l alias_consola "$aliasDir/alias_consolas.txt"
+  set -l consola (basename $argv[1])
   set -l resultado (awk -F '=' -v consola="$consola" '$1 == consola {print $2}' $alias_consola)
   echo "$resultado"
 end
 
 # Generar la estructura inicial del archivo de texto
-echo "Listado de juegos BOM" > $exportar
-echo "======================" >> $exportar
-echo "" >> $exportar
+printf "Listado de juegos BOM\n======================\n\n" > $exportar
 
 # Procesar cada archivo de juegos
-for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort -f -b)
-  if contains $archivo $ignorar
-    continue
-  end
+for archivo in (find $consolasDir -type f -name '*.txt' | sort -f -b)
 
   # Obtener el número de juegos en el archivo
   set numero (wc -l < $archivo)
@@ -34,11 +29,10 @@ for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort -f -b)
   set consola (titulo $archivo)
 
   # Agregar la sección de la consola al archivo de texto
-  echo "$consola ($numero)" >> $exportar
-  echo "----------------------" >> $exportar
+  printf "%s (%s)\n----------------------\n" "$consola" "$numero" >> $exportar
   
-  for i in (cat $archivo)
-    echo "- $i ($consola)">> $exportar
+  cat $archivo | while read -l juego
+    echo "- $juego ($consola)" >> $exportar
   end
 
   echo "" >> $exportar

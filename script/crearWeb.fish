@@ -1,11 +1,13 @@
 #!/usr/bin/fish
 
-set ignorar "alias.txt" "alias_MSU-1.txt" "alias_MSU-MD.txt" "alias_PICO-8.txt" "alias_consolas.txt"
 set exportar "../index.html"
+set consolasDir "../consolas"
+set aliasDir "../alias"
+
 
 function titulo
-  set -l alias_consola "alias_consolas.txt"
-  set -l consola $argv
+  set -l alias_consola "$aliasDir/alias_consolas.txt"
+  set -l consola (basename $argv[1])
   set -l resultado (awk -F '=' -v consola="$consola" '$1 == consola { print $2 }' $alias_consola)
   echo "$resultado"
 end
@@ -21,17 +23,15 @@ echo "<!DOCTYPE html>
 <h1 id=\"menu\">🔥 Listado de Juegos BOM 🎮️ </h1>" > $exportar
 echo "<nav>" > nav.html
 
-for archivo in (find -name '*.txt' | sed 's/\.\///g' | sort - -f -b)
+for archivo in (find $consolasDir -type f -name '*.txt' | sort -f -b)
 
-	if contains $archivo $ignorar
-		continue
-	end
 	set numero (wc -l < $archivo)
 	set consola (titulo $archivo )
 	echo "<section>" >> $exportar
 	echo "<h2 id=\"$consola\">$consola ($numero)<a href=\"#menu\">Arriba ⤴</a></h2>" >> $exportar
-	for i in (cat $archivo)
-		echo "<div class=\"juego\"><span>$i</span><span>$consola</span></div>" >> $exportar
+
+  cat $archivo | while read -l juego
+		echo "<div class=\"juego\"><span>$juego</span><span>$consola</span></div>" >> $exportar
 	end
 	echo "</section>" >> $exportar
 	echo "<a href=\"#$consola\">$consola ($numero)</a>" >> nav.html

@@ -23,9 +23,10 @@ function reescribir_alias
   set -l listado_file $argv[2]
   set -l resultado $argv[3]
 
-  for alias in (cat $listado_file)
-  awk -F '=' -v alias="$alias" '$1 == alias {print $2}' $alias_file >> $resultado
-  end
+  awk -F '=' 'NR==FNR {map[$1]=$2; next} {if ($1 in map) print map[$1]}' $alias_file $listado_file > $resultado
+  #cat $listado_file | while read -l alias
+   # awk -F '=' -v alias="$alias" '$1 == alias {print $2}' $alias_file >> $resultado
+  #end
 
   rm $listado_file
 end
